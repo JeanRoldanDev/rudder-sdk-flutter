@@ -1,8 +1,6 @@
-import './Utils.dart';
+import 'package:rudder_sdk_flutter/Utils.dart';
 
 class RudderTraits {
-  Map<String, dynamic> traitsMap = {};
-
   /// Initialise RudderTraits
   ///
   /// @param address     Address
@@ -18,88 +16,58 @@ class RudderTraits {
   /// @param lastName    String
   /// @param name        String
   /// @param phone       String
-  /// @param title
+  /// @param title       String
   /// @param userName    String
-  RudderTraits(
-      {Address? address,
-      String? age,
-      String? birthday,
-      Company? company,
-      String? createdAt,
-      String? description,
-      String? email,
-      String? firstName,
-      String? gender,
-      String? id,
-      String? lastName,
-      String? name,
-      String? phone,
-      String? title,
-      String? userName}) {
-    if (address != null) {
-      traitsMap["address"] = address.addressMap;
-    }
-    if (age != null) {
-      traitsMap["age"] = age;
-    }
-    if (birthday != null) {
-      traitsMap["birthday"] = birthday;
-    }
-    if (company != null) {
-      traitsMap["company"] = company.companyMap;
-    }
-    if (createdAt != null) {
-      traitsMap["createdAt"] = createdAt;
-    }
-    if (description != null) {
-      traitsMap["description"] = description;
-    }
-    if (email != null) {
-      traitsMap["email"] = email;
-    }
-    if (firstName != null) {
-      traitsMap["firstName"] = firstName;
-    }
-    if (gender != null) {
-      traitsMap["gender"] = gender;
-    }
-    if (id != null) {
-      traitsMap["id"] = id;
-      traitsMap["oldId"] = id;
-    }
-    if (lastName != null) {
-      traitsMap["lastName"] = lastName;
-    }
-    if (name != null) {
-      traitsMap["name"] = name;
-    }
-    if (phone != null) {
-      traitsMap["phone"] = phone;
-    }
-    if (title != null) {
-      traitsMap["title"] = title;
-    }
-    if (userName != null) {
-      traitsMap["userName"] = userName;
-    }
-  }
+  const RudderTraits({
+    this.address,
+    this.age,
+    this.birthday,
+    this.company,
+    this.createdAt,
+    this.description,
+    this.email,
+    this.firstName,
+    this.gender,
+    this.id,
+    this.lastName,
+    this.name,
+    this.phone,
+    this.title,
+    this.userName,
+    this.extras,
+  });
+
+  final Address? address;
+  final int? age;
+  final String? birthday;
+  final Company? company;
+  final String? createdAt;
+  final String? description;
+  final String? email;
+  final String? firstName;
+  final String? gender;
+  final String? id;
+  final String? lastName;
+  final String? name;
+  final String? phone;
+  final String? title;
+  final String? userName;
+  final Map<String, dynamic>? extras;
 
   /// Put Address
   ///
   /// @param address Address
   /// @return traits RudderTraits
   RudderTraits putAddress(Address address) {
-    traitsMap["address"] = address.addressMap;
-    return this;
+    return copyWith(address: address);
   }
 
   /// put Age
   ///
-  /// @param age String
+  /// @param age int
   /// @return traits RudderTraits
-  RudderTraits putAge(String age) {
-    traitsMap["age"] = age;
-    return this;
+  RudderTraits putAge(int age) {
+    return copyWith(age: age);
   }
 
   /// put Birthday as Date
@@ -107,13 +75,11 @@ class RudderTraits {
   /// @param birthday Date
   /// @return traits RudderTraits
   RudderTraits putBirthdayDate(DateTime birthdayDate) {
-    traitsMap["birthday"] = Utils.toDateString(birthdayDate);
-    return this;
+    return copyWith(birthday: Utils.toDateString(birthdayDate));
   }
 
   RudderTraits putBirthdayString(String birthdayString) {
-    traitsMap["birthday"] = birthdayString;
-    return this;
+    return copyWith(birthday: birthdayString);
   }
 
   /// put Company
@@ -121,8 +87,7 @@ class RudderTraits {
   /// @param company Company
   /// @return traits RudderTraits
   RudderTraits putCompany(Company company) {
-    traitsMap["company"] = company.companyMap;
-    return this;
+    return copyWith(company: company);
   }
 
   /// put Created At
@@ -130,8 +95,7 @@ class RudderTraits {
   /// @param createdAt String
   /// @return traits RudderTraits
   RudderTraits putCreatedAt(String createdAt) {
-    traitsMap["createdAt"] = createdAt;
-    return this;
+    return copyWith(createdAt: createdAt);
   }
 
   /// put description
@@ -139,8 +103,7 @@ class RudderTraits {
   /// @param description String
   /// @return traits RudderTraits
   RudderTraits putDescription(String description) {
-    traitsMap["description"] = description;
-    return this;
+    return copyWith(description: description);
   }
 
   /// put email
@@ -148,8 +111,7 @@ class RudderTraits {
   /// @param email String
   /// @return traits RudderTraits
   RudderTraits putEmail(String email) {
-    traitsMap["email"] = email;
-    return this;
+    return copyWith(email: email);
   }
 
   /// put First Name
@@ -157,8 +119,7 @@ class RudderTraits {
   /// @param firstName String
   /// @return traits RudderTraits
   RudderTraits putFirstName(String firstName) {
-    traitsMap["firstName"] = firstName;
-    return this;
+    return copyWith(firstName: firstName);
   }
 
   /// put gender
@@ -166,8 +127,7 @@ class RudderTraits {
   /// @param gender String
   /// @return traits RudderTraits
   RudderTraits putGender(String gender) {
-    traitsMap["gender"] = gender;
-    return this;
+    return copyWith(gender: gender);
   }
 
   /// put id
@@ -175,9 +135,7 @@ class RudderTraits {
   /// @param id String
   /// @return traits RudderTraits
   RudderTraits putId(String id) {
-    traitsMap["id"] = id;
-    traitsMap["oldId"] = id;
-    return this;
+    return copyWith(id: id);
   }
 
   /// put Last Name
@@ -185,8 +143,7 @@ class RudderTraits {
   /// @param lastName String
   /// @return traits RudderTraits
   RudderTraits putLastName(String lastName) {
-    traitsMap["lastName"] = lastName;
-    return this;
+    return copyWith(lastName: lastName);
   }
 
   /// put name
@@ -194,8 +151,7 @@ class RudderTraits {
   /// @param name String
   /// @return traits RudderTraits
   RudderTraits putName(String name) {
-    traitsMap["name"] = name;
-    return this;
+    return copyWith(name: name);
   }
 
   /// put phone
@@ -203,8 +159,7 @@ class RudderTraits {
   /// @param phone String
   /// @return traits RudderTraits
   RudderTraits putPhone(String phone) {
-    traitsMap["phone"] = phone;
-    return this;
+    return copyWith(phone: phone);
   }
 
   /// put title
@@ -212,8 +167,7 @@ class RudderTraits {
   /// @param title String
   /// @return traits RudderTraits
   RudderTraits putTitle(String title) {
-    traitsMap["title"] = title;
-    return this;
+    return copyWith(title: title);
   }
 
   /// put User Name
@@ -221,8 +175,7 @@ class RudderTraits {
   /// @param userName String
   /// @return traits RudderTraits
   RudderTraits putUserName(String userName) {
-    traitsMap["userName"] = userName;
-    return this;
+    return copyWith(userName: userName);
   }
 
   /// put generic key value pairs
@@ -231,29 +184,82 @@ class RudderTraits {
   /// @param value Object
   /// @return traits RudderTraits
   RudderTraits put(String key, dynamic value) {
-    if (traitsMap["extras"] == null) {
-      traitsMap["extras"] = <String, dynamic>{};
+    var newExtras = <String, dynamic>{};
+    if (extras != null) {
+      newExtras = extras!;
     }
-    Map<String, dynamic> extras = traitsMap["extras"];
-    extras[key] = value;
-    traitsMap["extras"] = extras;
-    return this;
+    newExtras[key] = value;
+    return copyWith(extras: newExtras);
   }
 
   RudderTraits putValue(Map<String, dynamic> map) {
-    if (traitsMap["extras"] == null) {
-      traitsMap["extras"] = {};
+    var newExtras = <String, dynamic>{};
+    if (extras != null) {
+      newExtras = extras!;
     }
-    Map<String, dynamic> extras = traitsMap["extras"];
-    extras.addAll(map);
-    traitsMap["extras"] = extras;
-    return this;
+    newExtras.addAll(map);
+    return copyWith(extras: newExtras);
   }
+
+  RudderTraits copyWith({
+    Address? address,
+    int? age,
+    String? birthday,
+    Company? company,
+    String? createdAt,
+    String? description,
+    String? email,
+    String? firstName,
+    String? gender,
+    String? id,
+    String? lastName,
+    String? name,
+    String? phone,
+    String? title,
+    String? userName,
+    Map<String, dynamic>? extras,
+  }) {
+    return RudderTraits(
+      address: address ?? this.address,
+      age: age ?? this.age,
+      birthday: birthday ?? this.birthday,
+      company: company ?? this.company,
+      createdAt: createdAt ?? this.createdAt,
+      description: description ?? this.description,
+      email: email ?? this.email,
+      firstName: firstName ?? this.firstName,
+      gender: gender ?? this.gender,
+      id: id ?? this.id,
+      lastName: lastName ?? this.lastName,
+      name: name ?? this.name,
+      phone: phone ?? this.phone,
+      title: title ?? this.title,
+      userName: userName ?? this.userName,
+      extras: extras ?? this.extras,
+    );
+  }
+
+  Map<String, dynamic> traitsMap() => <String, dynamic>{
+        'id': id,
+        'firstName': firstName,
+        'lastName': lastName,
+        'name': name,
+        'age': age,
+        'email': email,
+        'phone': phone,
+        'address': address != null ? address!.addressMap : null,
+        'birthday': birthday.toString(),
+        'company': company != null ? company!.companyMap : null,
+        'createdAt': createdAt,
+        'description': description,
+        'gender': gender,
+        'title': title,
+        'username': userName,
+        'extras': extras
+      };
 }
 
 class Address {
-  Map<String, String> addressMap = {};
-
   /// constructor
   ///
   /// @param city       String
@@ -261,36 +267,26 @@ class Address {
   /// @param postalCode String
   /// @param state      String
   /// @param street     String
-  Address(
-      {String? city,
-      String? country,
-      String? postalCode,
-      String? state,
-      String? street}) {
-    if (city != null) {
-      addressMap["city"] = city;
-    }
-    if (country != null) {
-      addressMap["country"] = country;
-    }
-    if (postalCode != null) {
-      addressMap["postalCode"] = postalCode;
-    }
-    if (state != null) {
-      addressMap["state"] = state;
-    }
-    if (street != null) {
-      addressMap["street"] = street;
-    }
-  }
+  const Address({
+    this.city,
+    this.country,
+    this.postalCode,
+    this.state,
+    this.street,
+  });
+
+  final String? city;
+  final String? country;
+  final String? postalCode;
+  final String? state;
+  final String? street;
 
   /// put city
   ///
   /// @param city String
   /// @return address Address
   Address putCity(String city) {
-    addressMap["city"] = city;
-    return this;
+    return copyWith(city: city);
   }
 
   /// put country
@@ -298,8 +294,7 @@ class Address {
   /// @param country String
   /// @return address Address
   Address putCountry(String country) {
-    addressMap["country"] = country;
-    return this;
+    return copyWith(country: country);
   }
 
   /// put postal code
@@ -307,8 +302,7 @@ class Address {
   /// @param postalCode String
   /// @return address Address
   Address putPostalCode(String postalCode) {
-    addressMap["postalcode"] = postalCode;
-    return this;
+    return copyWith(postalCode: postalCode);
   }
 
   /// put state String
@@ -316,8 +310,7 @@ class Address {
   /// @param state String
   /// @return address Address
   Address putState(String state) {
-    addressMap["state"] = state;
-    return this;
+    return copyWith(state: state);
   }
 
   /// put street String
@@ -325,38 +318,57 @@ class Address {
   /// @param street String
   /// @return address Address
   Address putStreet(String street) {
-    addressMap["street"] = street;
-    return this;
+    return copyWith(street: street);
   }
+
+  Address copyWith({
+    String? city,
+    String? country,
+    String? postalCode,
+    String? state,
+    String? street,
+  }) {
+    return Address(
+      city: city ?? this.city,
+      country: country ?? this.country,
+      postalCode: postalCode ?? this.postalCode,
+      state: state ?? this.state,
+      street: street ?? this.street,
+    );
+  }
+
+  Map<String, dynamic> get addressMap => <String, dynamic>{
+        'city': city,
+        'country': country,
+        'postalCode': postalCode,
+        'state': state,
+        'street': street,
+      };
 }
 
 class Company {
-  Map<String, String> companyMap = {};
+  // Map<String, String> companyMap = {};
 
   /// constructor
   ///
   /// @param name     String
   /// @param id       String
   /// @param industry String
-  Company({String? name, String? id, String? industry}) {
-    if (name != null) {
-      companyMap["name"] = name;
-    }
-    if (id != null) {
-      companyMap["id"] = id;
-    }
-    if (industry != null) {
-      companyMap["industry"] = industry;
-    }
-  }
+  const Company({
+    this.name,
+    this.id,
+    this.industry,
+  });
+  final String? name;
+  final String? id;
+  final String? industry;
 
   /// put name
   ///
   /// @param name String
   /// @return company Company
   Company putName(String name) {
-    companyMap["name"] = name;
-    return this;
+    return copyWith(name: name);
   }
 
   /// put company Id
@@ -364,8 +376,7 @@ class Company {
   /// @param id String
   /// @return company Company
   Company putId(String id) {
-    companyMap["id"] = id;
-    return this;
+    return copyWith(id: id);
   }
 
   /// put industry
@@ -373,7 +384,24 @@ class Company {
   /// @param industry String
   /// @return company Company
   Company putIndustry(String industry) {
-    companyMap["industry"] = industry;
-    return this;
+    return copyWith(industry: industry);
   }
+
+  Company copyWith({
+    String? name,
+    String? id,
+    String? industry,
+  }) {
+    return Company(
+      name: name ?? this.name,
+      id: id ?? this.id,
+      industry: industry ?? this.industry,
+    );
+  }
+
+  Map<String, dynamic> get companyMap => <String, dynamic>{
+        'name': name,
+        'id': id,
+        'industry': industry,
+      };
 }

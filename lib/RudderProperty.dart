@@ -1,42 +1,33 @@
 class RudderProperty {
-  RudderProperty() : __map = {};
-  final Map<String, dynamic> __map;
+  RudderProperty();
 
-  Map<String, dynamic> getMap() {
-    return __map;
-  }
+  RudderProperty.fromMap(Map<String, dynamic> map) : _map = map;
 
-  bool hasProperty(String key) {
-    return __map.containsKey(key);
-  }
-
-  void put(String key, dynamic value) {
-    __map[key] = value;
-  }
-
-  RudderProperty putValue(
-      {String? key, dynamic value, Map<String, dynamic>? map}) {
+  RudderProperty.putValue({
+    String? key,
+    dynamic value,
+    Map<String, dynamic>? map,
+  }) {
     if (map != null) {
-      __map.addAll(map);
-      return this;
+      _map.addAll(map);
     }
     if (key != null) {
       if (value is RudderProperty) {
-        __map[key] = value.getMap();
+        _map[key] = value.getMap();
       } else {
-        __map[key] = value;
+        _map[key] = value;
       }
     }
-    return this;
   }
+  var _map = <String, dynamic>{};
 
-  void putRevenue(double revenue) {
-    __map["revenue"] = revenue;
-  }
+  Map<String, dynamic> getMap() => _map;
 
-  void putCurrency(String currency) {
-    __map["currency"] = currency;
-  }
+  bool hasProperty(String key) => _map.containsKey(key);
 
-  RudderProperty.fromMap(Map<String, dynamic> map) : __map = map;
+  void put(String key, dynamic value) => _map[key] = value;
+
+  void putRevenue(double revenue) => _map['revenue'] = revenue;
+
+  void putCurrency(String currency) => _map['currency'] = currency;
 }

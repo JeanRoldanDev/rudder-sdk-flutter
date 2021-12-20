@@ -1,5 +1,5 @@
-import './RudderIntegration.dart';
-import './Utils.dart';
+import 'package:rudder_sdk_flutter/RudderIntegration.dart';
+import 'package:rudder_sdk_flutter/Utils.dart';
 
 // we left fetching the external ids from the scratch here
 class RudderOption {
@@ -10,11 +10,10 @@ class RudderOption {
     externalIds ??= [];
 
     Map<String, Object>? externalIdMap;
-    int mapIndex = -1;
-    for (int index = 0; index < externalIds!.length; index++) {
-      Map<String, Object> map =
-          externalIds!.elementAt(index) as Map<String, Object>;
-      String mapType = map["type"].toString();
+    var mapIndex = -1;
+    for (var index = 0; index < externalIds!.length; index++) {
+      final map = externalIds!.elementAt(index) as Map<String, Object>;
+      final mapType = map['type'].toString();
       if (Utils.equalsIgnoreCase(mapType, type)) {
         externalIdMap = map;
         mapIndex = index;
@@ -25,18 +24,18 @@ class RudderOption {
     // if not present from previous runs: create new and assign the type
     if (externalIdMap == null) {
       externalIdMap = {};
-      externalIdMap["type"] = type;
+      externalIdMap['type'] = type;
     }
 
     // assign new id or update existing id
-    externalIdMap["id"] = id;
+    externalIdMap['id'] = id;
 
     // finally update existing position or add new id
     if (mapIndex == -1) {
       // not found in existing storage
       externalIds!.add(externalIdMap);
     } else {
-      externalIds!.elementAt(mapIndex)["id"] = id;
+      externalIds!.elementAt(mapIndex)['id'] = id;
     }
 
     // return for builder pattern
@@ -57,11 +56,11 @@ class RudderOption {
   }
 
   Map<String, Object> toMap() {
-    Map<String, Object> optionsMap = {};
+    final optionsMap = <String, Object>{};
     if (externalIds != null) {
-      optionsMap["externalIds"] = externalIds!;
+      optionsMap['externalIds'] = externalIds!;
     }
-    optionsMap["integrations"] = integrations ?? {};
+    optionsMap['integrations'] = integrations ?? {};
     return optionsMap;
   }
 }

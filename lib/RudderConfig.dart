@@ -1,7 +1,7 @@
-import './Constants.dart';
-import './RudderIntegration.dart';
-import './RudderLogger.dart';
-import './Utils.dart';
+import 'package:rudder_sdk_flutter/Constants.dart';
+import 'package:rudder_sdk_flutter/RudderIntegration.dart';
+import 'package:rudder_sdk_flutter/RudderLogger.dart';
+import 'package:rudder_sdk_flutter/Utils.dart';
 
 /*
  * Config class for RudderClient
@@ -19,20 +19,21 @@ import './Utils.dart';
  *
  * */
 class RudderConfig {
-  Map<String, dynamic> config = {};
+  final config = <String, dynamic>{};
 
   RudderConfig() {
     __RudderConfig(
-        Constants.DATA_PLANE_URL,
-        Constants.FLUSH_QUEUE_SIZE,
-        Constants.DB_COUNT_THRESHOLD,
-        Constants.SLEEP_TIMEOUT,
-        RudderLogger.ERROR,
-        Constants.CONFIG_REFRESH_INTERVAL,
-        Constants.TRACK_LIFECYCLE_EVENTS,
-        Constants.RECORD_SCREEN_VIEWS,
-        Constants.CONTROL_PLANE_URL,
-        null);
+      Constants.DATA_PLANE_URL,
+      Constants.FLUSH_QUEUE_SIZE,
+      Constants.DB_COUNT_THRESHOLD,
+      Constants.SLEEP_TIMEOUT,
+      RudderLogger.ERROR,
+      Constants.CONFIG_REFRESH_INTERVAL,
+      Constants.TRACK_LIFECYCLE_EVENTS,
+      Constants.RECORD_SCREEN_VIEWS,
+      Constants.CONTROL_PLANE_URL,
+      null,
+    );
   }
 
   __RudderConfig(
@@ -49,20 +50,20 @@ class RudderConfig {
   ) {
     if (Utils.isEmpty(dataPlaneUrl)) {
       RudderLogger.logError(
-          "dataPlaneUrl can not be null or empty. Set to default.");
+          'dataPlaneUrl can not be null or empty. Set to default.');
       config['dataPlaneUrl'] = Constants.DATA_PLANE_URL;
     } else if (!Utils.isValidUrl(dataPlaneUrl)) {
-      RudderLogger.logError("Malformed dataPlaneUrl. Set to default");
+      RudderLogger.logError('Malformed dataPlaneUrl. Set to default');
       config['dataPlaneUrl'] = Constants.DATA_PLANE_URL;
     } else {
-      if (!dataPlaneUrl.endsWith("/")) dataPlaneUrl += "/";
+      if (!dataPlaneUrl.endsWith('/')) dataPlaneUrl += '/';
       config['dataPlaneUrl'] = dataPlaneUrl;
     }
 
     if (flushQueueSize < Utils.MIN_FLUSH_QUEUE_SIZE ||
         flushQueueSize > Utils.MAX_FLUSH_QUEUE_SIZE) {
       RudderLogger.logError(
-          "flushQueueSize is out of range. Min: 1, Max: 100. Set to default");
+          'flushQueueSize is out of range. Min: 1, Max: 100. Set to default');
       config['flushQueueSize'] = Constants.FLUSH_QUEUE_SIZE;
     } else {
       config['flushQueueSize'] = flushQueueSize;
@@ -71,7 +72,7 @@ class RudderConfig {
     config['logLevel'] = logLevel;
 
     if (dbCountThreshold < 0) {
-      RudderLogger.logError("invalid dbCountThreshold. Set to default");
+      RudderLogger.logError('invalid dbCountThreshold. Set to default');
       config['dbCountThreshold'] = Constants.DB_COUNT_THRESHOLD;
     } else {
       config['dbCountThreshold'] = dbCountThreshold;
@@ -86,7 +87,7 @@ class RudderConfig {
     }
 
     if (sleepTimeOut < Utils.MIN_SLEEP_TIMEOUT) {
-      RudderLogger.logError("invalid sleepTimeOut. Set to default");
+      RudderLogger.logError('invalid sleepTimeOut. Set to default');
       config['sleepTimeOut'] = Constants.SLEEP_TIMEOUT;
     } else {
       config['sleepTimeOut'] = sleepTimeOut;
@@ -97,13 +98,13 @@ class RudderConfig {
 
     if (Utils.isEmpty(controlPlaneUrl)) {
       RudderLogger.logError(
-          "configPlaneUrl can not be null or empty. Set to default.");
+          'configPlaneUrl can not be null or empty. Set to default.');
       config['controlPlaneUrl'] = Constants.CONTROL_PLANE_URL;
     } else if (!Utils.isValidUrl(controlPlaneUrl)) {
-      RudderLogger.logError("Malformed configPlaneUrl. Set to default");
+      RudderLogger.logError('Malformed configPlaneUrl. Set to default');
       config['controlPlaneUrl'] = Constants.CONTROL_PLANE_URL;
     } else {
-      if (!controlPlaneUrl.endsWith("/")) controlPlaneUrl += "/";
+      if (!controlPlaneUrl.endsWith('/')) controlPlaneUrl += '/';
       config['controlPlaneUrl'] = controlPlaneUrl;
     }
 
@@ -129,11 +130,11 @@ class RudderConfigBuilder {
   RudderConfigBuilder withDataPlaneUrl(String dataPlaneUrl) {
     if (Utils.isEmpty(dataPlaneUrl)) {
       RudderLogger.logError(
-          "endPointUri can not be null or empty. Set to default");
+          'endPointUri can not be null or empty. Set to default');
       return this;
     }
     if (!Utils.isValidUrl(dataPlaneUrl)) {
-      RudderLogger.logError("Malformed endPointUri. Set to default");
+      RudderLogger.logError('Malformed endPointUri. Set to default');
       return this;
     }
     __dataPlaneUrl = dataPlaneUrl;
@@ -147,7 +148,7 @@ class RudderConfigBuilder {
   RudderConfigBuilder withFlushQueueSize(int flushQueueSize) {
     if (flushQueueSize < 1 || flushQueueSize > 100) {
       RudderLogger.logError(
-          "flushQueueSize is out of range. Min: 1, Max: 100. Set to default");
+          'flushQueueSize is out of range. Min: 1, Max: 100. Set to default');
       return this;
     }
     __flushQueueSize = flushQueueSize;
@@ -216,7 +217,7 @@ class RudderConfigBuilder {
   bool __trackLifecycleEvents = Constants.TRACK_LIFECYCLE_EVENTS;
 
   /// @param shouldTrackLifecycleEvents Whether we should track Application lifecycle events automatically
-  /// "Application Installed" and "Application Updated" will always be tracked
+  /// 'Application Installed' and 'Application Updated' will always be tracked
   /// @return RudderConfigBuilder
   RudderConfigBuilder withTrackLifecycleEvents(
       bool shouldTrackLifecycleEvents) {

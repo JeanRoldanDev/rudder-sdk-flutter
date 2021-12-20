@@ -9,46 +9,46 @@ class RudderLogger {
   static const int NONE = 0;
 
   static int __logLevel = INFO;
-  static const String __TAG = "RudderFlutterSDK";
+  static const String _tag = 'RudderFlutterSDK';
   static late Logger logger;
 
   static void init(int l) {
     if (l > VERBOSE) {
       l = VERBOSE;
-    } else if (l < NONE) l = NONE;
+    } else if (l < NONE) {
+      l = NONE;
+    }
     __logLevel = l;
-    logger = Logger(
-      printer: PrettyPrinter(),
-    );
+    logger = Logger(printer: PrettyPrinter());
   }
 
   static void logError(String message) {
     if (__logLevel >= ERROR) {
-      logger.e(__TAG, "Error: " + message);
+      logger.e(_tag, 'Error: $message');
     }
   }
 
   static void logWarn(String message) {
     if (__logLevel >= WARN) {
-      logger.w(__TAG, "Warn: " + message);
+      logger.w(_tag, 'Warn: $message');
     }
   }
 
   static void logInfo(String message) {
     if (__logLevel >= INFO) {
-      logger.i(__TAG, "Info: " + message);
+      logger.i(_tag, 'Info: $message');
     }
   }
 
   static void logDebug(String message) {
     if (__logLevel >= DEBUG) {
-      logger.d(__TAG, "Debug: " + message);
+      logger.d(_tag, 'Debug: $message');
     }
   }
 
   static void logVerbose(String message) {
     if (__logLevel >= VERBOSE) {
-      logger.v(__TAG, "Verbose: " + message);
+      logger.v(_tag, 'Verbose: $message');
     }
   }
 }
