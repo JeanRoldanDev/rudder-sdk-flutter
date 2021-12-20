@@ -1,7 +1,6 @@
-include: package:flutter_lints/flutter.yaml
+include: package:very_good_analysis/analysis_options.yaml
 linter:
   rules:
     file_names: false
     library_names: false
-    non_constant_identifier_names: false
-    constant_identifier_names: false
+    public_member_api_docs: false

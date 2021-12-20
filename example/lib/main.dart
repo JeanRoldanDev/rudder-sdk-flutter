@@ -6,6 +6,10 @@ import 'package:rudder_sdk_flutter/RudderOption.dart';
 import 'package:rudder_sdk_flutter/RudderProperty.dart';
 import 'package:rudder_sdk_flutter/RudderTraits.dart';
 
+void main() {
+  runApp(const MaterialApp(home: PlatformChannel()));
+}
+
 class PlatformChannel extends StatefulWidget {
   const PlatformChannel({Key? key}) : super(key: key);
   @override
@@ -17,7 +21,7 @@ class _PlatformChannelState extends State<PlatformChannel> {
   void __identify() {
     RudderTraits traits = RudderTraits()
         .putName("Sai Venkat")
-        .putAge("22")
+        .putAge(22)
         .putEmail("saivenkatdesu@gmail.com");
     rudderClient.identify("161FA04009", traits: traits);
   }
@@ -75,8 +79,9 @@ class _PlatformChannelState extends State<PlatformChannel> {
               child: const Text('Initialize SDK'),
               onPressed: () {
                 RudderConfigBuilder builder = RudderConfigBuilder();
-                builder.withDataPlaneUrl("https://friendly-badger-28.loca.lt");
-                builder.withControlPlaneUrl("https://56d9996d386b.ngrok.io");
+                builder.withDataPlaneUrl(
+                    "https://getdunajrvrn.dataplane.rudderstack.com");
+                // builder.withControlPlaneUrl("https://56d9996d386b.ngrok.io");
                 builder.withLogLevel(RudderLogger.VERBOSE);
                 RudderOption options = RudderOption();
                 options.putIntegration("Amplitude", true);
@@ -85,7 +90,7 @@ class _PlatformChannelState extends State<PlatformChannel> {
                 //RudderClient.getInstance("1n0JdVPZTRUIkLXYccrWzZwdGSx",
                 //   config: builder.build());
                 //2. With RudderConfigBuilder object
-                rudderClient.initialize("1shL9hswhzo3C0oAIfrnz8cMbjU",
+                rudderClient.initialize("22ZMSbei1iLGmC1nmdnJ55pD3Oo",
                     config: builder.build(), options: options);
               },
             ),
@@ -137,8 +142,4 @@ class _PlatformChannelState extends State<PlatformChannel> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(const MaterialApp(home: PlatformChannel()));
 }

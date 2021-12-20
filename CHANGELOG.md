@@ -1,3 +1,14 @@
+## 1.3.0
+
+* Added support for web flutter 
+* Added stricter lints.
+* Refactor Code
+
+## 1.2.0
+
+* Code compliance with official flutter lint.
+* Static functions have been deprecated for RudderClient.
+
 ## 1.0.0
 
 * The RudderStack Flutter SDK allows you to track event data from your app. It can be easily integrated into your Flutter application. After integrating this SDK, you will also send the event data to your preferred analytics destination/s, such as Google Analytics, Amplitude, and more.
